@@ -1,12 +1,29 @@
-import { Route, Routes } from "react-router-dom";
+import { useLayoutEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import SiteHeader from "./components/SiteHeader.jsx";
 import Contact from "./Contact.jsx";
 import Home from "./Home.jsx";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  // Before paint so child layout (e.g. header) never reads a stale scrollY from the previous route.
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/contact" element={<Contact />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <SiteHeader />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </>
   );
 }

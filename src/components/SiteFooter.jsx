@@ -23,9 +23,32 @@ export default function SiteFooter() {
     <footer className="border-t border-black/[0.06] bg-card/60 py-12">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-          <div className="max-w-xs">
+          <div className="max-w-md">
             <CompassMark />
             <p className="mt-3 text-sm text-muted">Shared workspace for your firm.</p>
+            <p className="mt-4 text-xs leading-relaxed text-muted md:text-sm">
+              Compass is a business intelligence system designed by{" "}
+              <span className="font-medium text-ink">Ives Deutschmann Management</span>.
+            </p>
+            <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-semibold md:text-sm">
+              <a
+                href="mailto:contact@ivesdeu.com"
+                className="text-muted underline decoration-muted/40 underline-offset-4 transition hover:text-ink"
+              >
+                contact@ivesdeu.com
+              </a>
+              <span className="text-muted/40" aria-hidden>
+                ·
+              </span>
+              <a
+                href="https://ivesdeu.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted underline decoration-muted/40 underline-offset-4 transition hover:text-ink"
+              >
+                ivesdeu.com
+              </a>
+            </p>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-muted">
             <FooterNavLink id="product">Product</FooterNavLink>
@@ -40,7 +63,6 @@ export default function SiteFooter() {
               Contact
             </TransitionLink>
           </nav>
-          <p className="text-sm text-muted md:text-right">© 2026 Compass</p>
         </div>
         <p className="mt-10 max-w-3xl text-xs leading-relaxed text-muted">
           Advisor uses workspace and session context to generate text. No guarantee of financial

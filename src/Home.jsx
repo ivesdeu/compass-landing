@@ -13,7 +13,6 @@ import {
   Wallet,
 } from "lucide-react";
 import SiteFooter from "./components/SiteFooter.jsx";
-import SiteHeader from "./components/SiteHeader.jsx";
 import TransitionLink from "./components/TransitionLink.jsx";
 import {
   applyFlyIn,
@@ -656,8 +655,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-canvas font-sans text-ink">
-      <SiteHeader />
-
       <main
         id="top"
         className="motion-reduce:animate-none animate-route-enter [animation-delay:0.05s]"
@@ -670,7 +667,7 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-4 md:px-6">
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="text-balance text-4xl font-extrabold leading-[1.08] tracking-tight text-ink md:text-5xl lg:text-[3.25rem]">
-                One place for performance, clients, and how your team works.
+                Built to keep your business on course.
               </h1>
               <p className="mx-auto mt-5 max-w-2xl text-pretty text-lg font-light leading-relaxed text-muted md:text-[18px]">
                 See performance, clients, and cash in one place. Dashboards you shape, plus Advisor for
@@ -1090,13 +1087,15 @@ export default function Home() {
                   <div key={item.id} className="px-4 py-1">
                     <button
                       type="button"
+                      id={`faq-trigger-${item.id}`}
                       onClick={() => setOpenFaq(open ? null : item.id)}
                       className="flex w-full items-center justify-between gap-4 py-4 text-left"
                       aria-expanded={open}
+                      aria-controls={`faq-panel-${item.id}`}
                     >
                       <span className="text-sm font-bold text-ink md:text-base">{item.q}</span>
                       <span
-                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-muted ring-1 ring-black/[0.06] transition ${
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-muted ring-1 ring-black/[0.06] transition-transform duration-300 ease-out motion-reduce:transition-none ${
                           open ? "rotate-180 text-accent" : ""
                         }`}
                       >
@@ -1110,9 +1109,19 @@ export default function Home() {
                         </svg>
                       </span>
                     </button>
-                    {open && (
-                      <div className="pb-4 text-sm leading-relaxed text-muted">{item.a}</div>
-                    )}
+                    <div
+                      id={`faq-panel-${item.id}`}
+                      role="region"
+                      aria-labelledby={`faq-trigger-${item.id}`}
+                      aria-hidden={!open}
+                      className={`grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
+                        open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <div className="min-h-0 overflow-hidden">
+                        <div className="pb-4 text-sm leading-relaxed text-muted">{item.a}</div>
+                      </div>
+                    </div>
                   </div>
                 );
               })}

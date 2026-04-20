@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import CompassMark from "./CompassMark.jsx";
 import TransitionLink from "./TransitionLink.jsx";
@@ -40,13 +40,20 @@ function NavItemMobile({ id, children }) {
 const SCROLL_CONDENSE = 72;
 
 export default function SiteHeader() {
+  const { pathname } = useLocation();
   const [condensed, setCondensed] = useState(false);
+  const ignoreScrollUntil = useRef(0);
+
+  useLayoutEffect(() => {
+    setCondensed(window.scrollY > SCROLL_CONDENSE);
+    ignoreScrollUntil.current = performance.now() + 120;
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => {
+      if (performance.now() < ignoreScrollUntil.current) return;
       setCondensed(window.scrollY > SCROLL_CONDENSE);
     };
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -62,14 +69,14 @@ export default function SiteHeader() {
         <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 text-sm font-semibold text-muted lg:gap-8 md:flex">
           <NavItem id="product">Product</NavItem>
           <NavItem id="features">Features</NavItem>
-          <NavItem id="faq">FAQ</NavItem>
           <NavItem id="pricing">Pricing</NavItem>
+          <NavItem id="faq">FAQ</NavItem>
         </nav>
         <nav className="flex flex-wrap items-center justify-end gap-x-2 gap-y-1 text-xs font-semibold text-muted md:hidden">
           <NavItemMobile id="product">Product</NavItemMobile>
           <NavItemMobile id="features">Features</NavItemMobile>
-          <NavItemMobile id="faq">FAQ</NavItemMobile>
           <NavItemMobile id="pricing">Pricing</NavItemMobile>
+          <NavItemMobile id="faq">FAQ</NavItemMobile>
         </nav>
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           <TransitionLink

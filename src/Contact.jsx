@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import SiteFooter from "./components/SiteFooter.jsx";
-import SiteHeader from "./components/SiteHeader.jsx";
 import TransitionLink from "./components/TransitionLink.jsx";
 import { useReducedMotion } from "./hooks/useReducedMotion.js";
 import { applyFlyIn, clearFlyIn, scrollRevealProgress } from "./utils/scrollReveal.js";
@@ -69,8 +68,6 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-canvas font-sans text-ink">
-      <SiteHeader />
-
       <main
         id="top"
         className="motion-reduce:animate-none animate-route-enter px-4 pb-20 pt-28 [animation-delay:0.05s] md:px-6 md:pb-24 md:pt-32"
