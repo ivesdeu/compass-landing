@@ -48,22 +48,33 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
+  const [submitStatus, setSubmitStatus] = useState("idle");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const subject = encodeURIComponent(`Compass access: ${name || "Request"}`);
-    const body = encodeURIComponent(
-      [
-        message.trim(),
-        "",
-        `Name: ${name}`,
-        `Email: ${email}`,
-        company.trim() ? `Company: ${company}` : null,
-      ]
-        .filter(Boolean)
-        .join("\n")
-    );
-    window.location.href = `mailto:contact@ivesdeu.com?subject=${subject}&body=${body}`;
+    const form = e.currentTarget;
+    setSubmitStatus("submitting");
+
+    try {
+      const body = new URLSearchParams(new FormData(form)).toString();
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      });
+
+      if (res.ok) {
+        setSubmitStatus("success");
+        setName("");
+        setEmail("");
+        setCompany("");
+        setMessage("");
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch {
+      setSubmitStatus("error");
+    }
   }
 
   return (
@@ -91,9 +102,20 @@ export default function Contact() {
 
           <form
             ref={formRef}
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
             className="mt-10 space-y-5 rounded-[18px] border border-black/[0.06] bg-white p-6 shadow-card will-change-[transform,opacity] md:p-8"
           >
+            <input type="hidden" name="form-name" value="contact" />
+            <p className="hidden" aria-hidden="true">
+              <label>
+                Don&apos;t fill this out if you&apos;re human:
+                <input name="bot-field" />
+              </label>
+            </p>
             <div>
               <label htmlFor="contact-name" className="block text-xs font-semibold text-ink">
                 Name
@@ -156,9 +178,10 @@ export default function Contact() {
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center rounded-full bg-ink px-8 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-ink/90 sm:w-auto"
+                disabled={submitStatus === "submitting"}
+                className="inline-flex w-full items-center justify-center rounded-full bg-ink px-8 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-ink/90 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
               >
-                Send request
+                {submitStatus === "submitting" ? "Sending…" : "Send request"}
               </button>
               <TransitionLink
                 to="/"
@@ -167,8 +190,22 @@ export default function Contact() {
                 Back to home
               </TransitionLink>
             </div>
+            {submitStatus === "success" && (
+              <p className="text-sm font-medium text-accent" role="status">
+                Thanks—we received your message and will follow up shortly.
+              </p>
+            )}
+            {submitStatus === "error" && (
+              <p className="text-sm font-medium text-rose-600" role="alert">
+                Something went wrong. Email{" "}
+                <a href="mailto:contact@ivesdeu.com" className="underline">
+                  contact@ivesdeu.com
+                </a>{" "}
+                directly.
+              </p>
+            )}
             <p className="text-xs leading-relaxed text-muted">
-              Submitting opens your mail app to send to{" "}
+              Submissions are delivered securely. You can also email{" "}
               <span className="font-medium text-ink">contact@ivesdeu.com</span>.
             </p>
           </form>
