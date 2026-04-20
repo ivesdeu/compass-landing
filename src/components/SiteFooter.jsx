@@ -53,12 +53,15 @@ export default function SiteFooter() {
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-muted">
             <FooterNavLink id="product">Product</FooterNavLink>
             <FooterNavLink id="pricing">Pricing</FooterNavLink>
-            <a href="#" className="hover:text-ink">
+            <TransitionLink to="/trust" className="hover:text-ink">
+              Trust &amp; Security
+            </TransitionLink>
+            <TransitionLink to="/privacy" className="hover:text-ink">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-ink">
+            </TransitionLink>
+            <TransitionLink to="/terms" className="hover:text-ink">
               Terms
-            </a>
+            </TransitionLink>
             <TransitionLink to="/contact" className="hover:text-ink">
               Contact
             </TransitionLink>
