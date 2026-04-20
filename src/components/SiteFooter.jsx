@@ -53,9 +53,6 @@ export default function SiteFooter() {
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-muted">
             <FooterNavLink id="product">Product</FooterNavLink>
             <FooterNavLink id="pricing">Pricing</FooterNavLink>
-            <TransitionLink to="/trust" className="hover:text-ink">
-              Trust &amp; Security
-            </TransitionLink>
             <TransitionLink to="/privacy" className="hover:text-ink">
               Privacy Policy
             </TransitionLink>

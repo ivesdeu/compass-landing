@@ -5,7 +5,6 @@ import Contact from "./Contact.jsx";
 import Home from "./Home.jsx";
 import PrivacyPolicy from "./PrivacyPolicy.jsx";
 import TermsOfService from "./TermsOfService.jsx";
-import TrustSecurity from "./TrustSecurity.jsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -26,7 +25,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/trust" element={<TrustSecurity />} />
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
       </Routes>
