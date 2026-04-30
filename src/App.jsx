@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import SiteHeader from "./components/SiteHeader.jsx";
 import Contact from "./Contact.jsx";
 import Home from "./Home.jsx";
+import PlatformPage from "./PlatformPage.jsx";
 import PrivacyPolicy from "./PrivacyPolicy.jsx";
 import TermsOfService from "./TermsOfService.jsx";
 
@@ -25,6 +26,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/platform/:slug" element={<PlatformPage />} />
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
       </Routes>

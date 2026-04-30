@@ -60,8 +60,8 @@ function useScrollRevealMocks({
         const t = scrollRevealProgress(r, vh);
         applyFlyIn(heroMockRef.current, t, {
           fromX: 0,
-          fromY: 64,
-          scale0: 0.93,
+          fromY: 32,
+          scale0: 0.97,
           scale1: 1,
         });
       }
@@ -70,9 +70,9 @@ function useScrollRevealMocks({
         const r = productMockRef.current.getBoundingClientRect();
         const t = scrollRevealProgress(r, vh);
         applyFlyIn(productMockRef.current, t, {
-          fromX: 56,
-          fromY: 36,
-          scale0: 0.94,
+          fromX: 28,
+          fromY: 20,
+          scale0: 0.97,
           scale1: 1,
         });
       }
@@ -82,8 +82,8 @@ function useScrollRevealMocks({
         const t = scrollRevealProgress(r, vh);
         applyFlyIn(layoutMockRef.current, t, {
           fromX: 0,
-          fromY: 72,
-          scale0: 0.93,
+          fromY: 34,
+          scale0: 0.97,
           scale1: 1,
         });
       }
@@ -92,9 +92,9 @@ function useScrollRevealMocks({
         const r = customersMockRef.current.getBoundingClientRect();
         const t = scrollRevealProgress(r, vh);
         applyFlyIn(customersMockRef.current, t, {
-          fromX: 52,
-          fromY: 40,
-          scale0: 0.94,
+          fromX: 24,
+          fromY: 22,
+          scale0: 0.97,
           scale1: 1,
         });
       }
@@ -103,9 +103,9 @@ function useScrollRevealMocks({
         const r = advisorMockRef.current.getBoundingClientRect();
         const t = scrollRevealProgress(r, vh);
         applyFlyIn(advisorMockRef.current, t, {
-          fromX: -52,
-          fromY: 40,
-          scale0: 0.94,
+          fromX: -24,
+          fromY: 22,
+          scale0: 0.97,
           scale1: 1,
         });
       }
@@ -116,9 +116,9 @@ function useScrollRevealMocks({
         let t = scrollRevealProgress(r, vh);
         t = clamp(t - i * 0.11, 0, 1);
         applyFlyIn(el, t, {
-          fromX: i % 2 === 0 ? -40 : 40,
-          fromY: 48,
-          scale0: 0.93,
+          fromX: i % 2 === 0 ? -20 : 20,
+          fromY: 24,
+          scale0: 0.97,
           scale1: 1,
         });
       });
@@ -130,9 +130,9 @@ function useScrollRevealMocks({
         t = clamp(t - (i % 3) * 0.065 - Math.floor(i / 3) * 0.08, 0, 1);
         const col = i % 3;
         applyFlyIn(el, t, {
-          fromX: col === 1 ? 0 : col === 0 ? -36 : 36,
-          fromY: 44,
-          scale0: 0.94,
+          fromX: col === 1 ? 0 : col === 0 ? -16 : 16,
+          fromY: 22,
+          scale0: 0.97,
           scale1: 1,
         });
       });
@@ -548,58 +548,40 @@ const faqItems = [
 
 const featureCards = [
   {
-    title: "Dashboard",
-    body: "KPIs, AR, income statement, and budget vs actual at a glance",
+    title: "Personable CRM",
+    body: "Track client records with Lead/Active/Inactive/Churned statuses, priorities, notes, and communication preferences so handoffs stay clear.",
     glyph: "dashboard",
     tone: "blue",
   },
   {
-    title: "Customers",
-    body: "Revenue, cost allocation, margin, and relationship timeline per client",
+    title: "Scheduling",
+    body: "Plan appointments in timeline context with reminders and calendar-aware sequencing so teams stop missing follow-ups.",
     glyph: "customers",
     tone: "rose",
   },
   {
-    title: "Income",
-    body: "Log income, track AR aging, filter by status, export to CSV",
+    title: "Invoicing & Payments",
+    body: "Create and send invoices, track sent vs paid status, and accept Stripe payments in one workflow.",
     glyph: "income",
     tone: "blue",
   },
   {
-    title: "Expenses",
-    body: "Slice by category, vendor, or client; compare budget vs actual",
+    title: "Gmail & Calendar Integrations",
+    body: "Connect Google accounts to send email and sync calendar workflows without context switching.",
     glyph: "expenses",
     tone: "rose",
   },
   {
-    title: "Timesheet",
-    body: "Track time per client or project alongside revenue",
+    title: "Team Workspaces",
+    body: "Run owner/admin/member roles in a shared workspace so everyone works from the same context.",
     glyph: "timesheet",
     tone: "blue",
   },
   {
-    title: "Analytics",
-    body: "Performance, retention, and insights across your client base",
+    title: "AI Advisor",
+    body: "Draft client updates, suggest CRM improvements, and compose outreach using your live workspace context.",
     glyph: "analytics",
     tone: "rose",
-  },
-  {
-    title: "Advisor",
-    body: "AI chat tied to your workspace data for briefs, recaps, and variance answers",
-    glyph: "advisor",
-    tone: "blue",
-  },
-  {
-    title: "Team",
-    body: "Invite by email or link, assign roles, manage org members",
-    glyph: "team",
-    tone: "rose",
-  },
-  {
-    title: "Settings",
-    body: "Budgets, reporting periods, workspace preferences",
-    glyph: "settings",
-    tone: "blue",
   },
 ];
 
@@ -667,18 +649,24 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-4 md:px-6">
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="text-balance text-4xl font-extrabold leading-[1.08] tracking-tight text-ink md:text-5xl lg:text-[3.25rem]">
-                Built to keep your business on course.
+                Run your full client lifecycle in one operating system.
               </h1>
               <p className="mx-auto mt-5 max-w-2xl text-pretty text-lg font-light leading-relaxed text-muted md:text-[18px]">
-                See performance, clients, and cash in one place. Dashboards you shape, plus Advisor for
-                recaps and answers from your numbers.
+                Compass combines CRM, scheduling, invoices, workflow automations, and AI Advisor
+                so service teams close work faster and stay organized.
               </p>
-              <div className="mt-8 flex justify-center">
+              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <TransitionLink
                   to="/contact"
                   className="inline-flex w-full items-center justify-center rounded-full bg-ink px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-ink/90 sm:w-auto"
                 >
-                  Get Access
+                  Book a demo
+                </TransitionLink>
+                <TransitionLink
+                  to="/contact"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-black/[0.12] bg-white px-8 py-3.5 text-sm font-semibold text-ink transition hover:bg-card sm:w-auto"
+                >
+                  Start free
                 </TransitionLink>
               </div>
             </div>
@@ -739,33 +727,37 @@ export default function Home() {
               <div className="mb-4 flex items-center justify-center gap-3">
                 <span className="h-px w-8 bg-accent" aria-hidden />
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-                  Your layout
+                  Workflow & Automation
                 </p>
               </div>
               <h2 className="text-3xl font-extrabold tracking-tight text-ink md:text-4xl md:leading-tight">
-                Tune the dashboard to how you review the business.
+                Build reliable trigger-action workflows for client operations.
               </h2>
+              <p className="mt-4 text-base font-light leading-relaxed text-muted md:text-lg">
+                Automate follow-up, reminders, and status changes with run tracking and
+                idempotent execution so repeated triggers do not create duplicate actions.
+              </p>
             </div>
             <div className="mx-auto mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 {
-                  t: "Reporting Period",
-                  d: "Scope the dashboard to any date range, all-time or filtered.",
+                  t: "Trigger Conditions",
+                  d: "Start workflows from stage changes, schedule windows, or task events.",
                   icon: "⏱",
                 },
                 {
-                  t: "Column Control",
-                  d: "Pick which columns show in Customers and Income tables.",
+                  t: "Action Steps",
+                  d: "Send outreach, create tasks, or update status automatically.",
                   icon: "☷",
                 },
                 {
-                  t: "Filter + Export",
-                  d: "Filter income by status, apply bulk actions, export to CSV.",
+                  t: "Run Tracking",
+                  d: "Review each automation run with timestamps and result visibility.",
                   icon: "⇅",
                 },
                 {
-                  t: "Budget vs Actual",
-                  d: "Set budgets in Settings; see variance in the Expenses view.",
+                  t: "Reliable Execution",
+                  d: "Idempotent processing keeps client operations consistent under retries.",
                   icon: "⊞",
                 },
               ].map((f) => (
@@ -795,32 +787,32 @@ export default function Home() {
               <div className="mb-4 flex items-center gap-3">
                 <span className="h-px w-8 bg-accent" aria-hidden />
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-                  Customers
+                  Reporting & Operations Visibility
                 </p>
               </div>
               <h2 className="text-3xl font-extrabold tracking-tight text-ink md:text-4xl md:leading-tight">
-                See client economics next to cash and AR.
+                See recap, revenue, profitability, and activity in one place.
               </h2>
               <ul className="mt-8 space-y-4 text-base font-light leading-relaxed text-ink md:text-[17px]">
                 <li className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   <span>
-                    Customers table shows revenue, allocated cost from tagged expenses, and
-                    profit margin
+                    Business recap views summarize what changed this week so operators can act
+                    quickly without digging across tools.
                   </span>
                 </li>
                 <li className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   <span>
-                    Income table with AR aging so you can see what&apos;s outstanding across all
-                    clients
+                    Revenue and profitability context sits next to customer activity, giving founders
+                    and account leads one operational picture.
                   </span>
                 </li>
                 <li className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   <span>
-                    Relationship timeline for reminders and recent touchpoints. Lightweight by
-                    design, not a Salesforce replacement
+                    Task and timeline visibility keeps assignments, follow-ups, and client touchpoints
+                    from slipping between teammates.
                   </span>
                 </li>
               </ul>
@@ -841,30 +833,37 @@ export default function Home() {
               <div className="mb-4 flex items-center gap-3">
                 <span className="h-px w-8 bg-accent" aria-hidden />
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-                  AI-assisted
+                  Trust & Platform
                 </p>
               </div>
               <h2 className="text-3xl font-extrabold tracking-tight text-ink md:text-4xl md:leading-tight">
-                Advisor for questions. Weekly recaps for rhythm.
+                Built for real operations, not a toy CRM.
               </h2>
               <ul className="mt-8 space-y-4 text-base font-light leading-relaxed text-ink md:text-[17px]">
                 <li className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   <span>
-                    Advisor chat: ask about variances, get a brief, or draft a follow-up, all
-                    grounded in your workspace data
+                    Multi-tenant workspace isolation keeps each organization&apos;s data scoped and
+                    separated by design.
                   </span>
                 </li>
                 <li className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   <span>
-                    Recaps on your dashboard, each generated in one click
+                    Role-based access controls keep owner, admin, and member permissions clear.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span>
+                    Integration credentials are handled securely so teams can connect email,
+                    calendar, and payments with confidence.
                   </span>
                 </li>
               </ul>
               <p className="mt-6 text-sm italic leading-relaxed text-muted">
-                Suggestions and drafts are assistive. Your team reviews client updates and
-                accounting decisions.
+                Compass is designed for daily operating cadence across delivery, billing, and client
+                communication.
               </p>
             </div>
             <div ref={advisorMockRef} className="will-change-[transform,opacity]">
@@ -880,29 +879,29 @@ export default function Home() {
               <div className="mb-4 flex items-center justify-center gap-3">
                 <span className="h-px w-8 bg-accent" aria-hidden />
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-                  Process
+                  Why Teams Switch
                 </p>
               </div>
               <h2 className="text-3xl font-extrabold tracking-tight text-ink md:text-4xl md:leading-tight">
-                Up and running in three steps.
+                Teams switch to Compass for speed and clarity.
               </h2>
             </div>
             <div className="mx-auto mt-14 flex max-w-5xl flex-col gap-5 md:flex-row md:items-stretch md:justify-center md:gap-4 lg:gap-5">
               {[
                 {
                   n: "01",
-                  label: "Create",
-                  t: "Create your workspace by naming the organization, picking your URL slug, and signing in.",
+                  label: "Fewer tools",
+                  t: "CRM, scheduling, invoicing, collaboration, and automation live in one workspace.",
                 },
                 {
                   n: "02",
-                  label: "Add data",
-                  t: "Add your data by entering transactions, income lines, and expenses, or import via CSV.",
+                  label: "Less switching",
+                  t: "Context stays connected, so teams stop jumping between inboxes, calendars, and spreadsheets.",
                 },
                 {
                   n: "03",
-                  label: "Review",
-                  t: "Invite the team and review together on a shared dashboard, with Advisor on standby for your next leadership check-in.",
+                  label: "Faster response",
+                  t: "Client updates, handoffs, and follow-through happen faster with cleaner ownership.",
                 },
               ].map((s, idx) => (
                 <div
@@ -939,14 +938,15 @@ export default function Home() {
               <div className="mb-4 flex items-center justify-center gap-3">
                 <span className="h-px w-8 bg-accent" aria-hidden />
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-                  Product
+                  What Compass Does
                 </p>
               </div>
               <h2 className="text-3xl font-extrabold tracking-tight text-ink md:text-4xl md:leading-tight">
-                What&apos;s inside Compass?
+                AI-assisted CRM + operations hub for client-based businesses.
               </h2>
               <p className="mt-4 text-base font-light text-muted md:text-lg">
-                Everything your firm needs in one shared workspace.
+                Built for founders, operators, and client service teams who need one place to run
+                work end to end.
               </p>
             </div>
             <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -963,6 +963,78 @@ export default function Home() {
                   <p className="mt-2 text-sm font-light leading-relaxed text-muted">{c.body}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* AI Advisor */}
+        <section id="advisor" className="scroll-mt-28 border-b border-black/[0.06] bg-white py-16 md:py-24">
+          <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
+            <div>
+              <div className="mb-4 flex items-center gap-3">
+                <span className="h-px w-8 bg-accent" aria-hidden />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
+                  AI Advisor
+                </p>
+              </div>
+              <h2 className="text-3xl font-extrabold tracking-tight text-ink md:text-4xl md:leading-tight">
+                Ask one question, get a clear next move.
+              </h2>
+              <p className="mt-5 text-base font-light leading-relaxed text-muted md:text-[17px]">
+                Advisor reads your live workspace context and turns raw activity into concise answers
+                your team can act on immediately, including building targeted lists in seconds.
+              </p>
+              <ul className="mt-8 space-y-4 text-base font-light leading-relaxed text-ink md:text-[17px]">
+                <li className="flex gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span>
+                    Build smart lists like “at-risk accounts,” “late invoices,” or “no-contact
+                    clients” from your live workspace data.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span>
+                    Generate prioritized follow-up lists with recommended next steps, owners, and
+                    due dates for each account.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span>
+                    Turn any list into assignable tasks so execution stays visible across the team.
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div className="rounded-[18px] border border-black/[0.06] bg-card/40 p-6 shadow-card md:p-8">
+              <div className="mb-4 flex items-center justify-between">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                  Advisor session
+                </p>
+                <span className="rounded-full bg-accent px-2.5 py-1 text-[10px] font-semibold text-white">
+                  Live context
+                </span>
+              </div>
+              <div className="space-y-3 text-sm">
+                <div className="ml-auto max-w-[95%] rounded-2xl rounded-br-md bg-white px-4 py-2.5 text-ink ring-1 ring-black/[0.06]">
+                  What changed with Brightline this week?
+                </div>
+                <div className="max-w-[95%] rounded-2xl rounded-bl-md bg-accent-soft px-4 py-2.5 text-muted ring-1 ring-accent/10">
+                  Brightline is up <span className="font-semibold text-ink">$6.2k</span> in billed
+                  work, but follow-up on invoice #442 is overdue by 9 days. Suggestion: send a
+                  payment nudge and schedule a QBR reminder for next Tuesday. I can also create a
+                  “late invoices this week” list for your team.
+                </div>
+              </div>
+              <div className="mt-5 grid gap-2 text-xs md:grid-cols-2">
+                <span className="rounded-lg bg-white px-3 py-2 font-medium text-ink ring-1 ring-black/[0.06]">
+                  Create payment reminder
+                </span>
+                <span className="rounded-lg bg-white px-3 py-2 font-medium text-ink ring-1 ring-black/[0.06]">
+                  Add QBR task
+                </span>
+              </div>
             </div>
           </div>
         </section>
@@ -1139,17 +1211,25 @@ export default function Home() {
               </p>
             </div>
             <h2 className="text-3xl font-extrabold tracking-tight text-ink md:text-4xl md:leading-tight">
-              Start your workspace. Invite your team this week.
+              Ready to run your client operations in one place?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-base font-light leading-relaxed text-muted md:text-lg">
-              Same URL, same org, and one picture of the business everyone shares.
+              Keep CRM, scheduling, invoices, and execution in one operating rhythm.
             </p>
-            <TransitionLink
-              to="/contact"
-              className="mt-8 inline-flex rounded-full bg-ink px-10 py-4 text-sm font-semibold text-white shadow-sm transition hover:bg-ink/90"
-            >
-              Get Access
-            </TransitionLink>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <TransitionLink
+                to="/contact"
+                className="inline-flex rounded-full bg-ink px-10 py-4 text-sm font-semibold text-white shadow-sm transition hover:bg-ink/90"
+              >
+                Book a demo
+              </TransitionLink>
+              <TransitionLink
+                to="/contact"
+                className="inline-flex rounded-full border border-black/[0.12] bg-white px-10 py-4 text-sm font-semibold text-ink transition hover:bg-card"
+              >
+                Start free
+              </TransitionLink>
+            </div>
             <p className="mt-4 text-xs text-muted">No credit card required.</p>
           </div>
         </section>

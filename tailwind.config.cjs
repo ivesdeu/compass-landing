@@ -6,8 +6,8 @@ module.exports = {
       colors: {
         ink: "#0A0A0A",
         muted: "#6B7280",
-        accent: "#E8472A",
-        "accent-soft": "#FDF2F0",
+        accent: "#2563EB",
+        "accent-soft": "#EAF1FF",
         navy: "#1A2B45",
         canvas: "#F5F5F5",
         card: "#F3F4F6",

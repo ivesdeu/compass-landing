@@ -51,7 +51,7 @@ export default function SiteFooter() {
             </p>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-muted">
-            <FooterNavLink id="product">Product</FooterNavLink>
+            <FooterNavLink id="product">Solutions</FooterNavLink>
             <FooterNavLink id="pricing">Pricing</FooterNavLink>
             <TransitionLink to="/privacy" className="hover:text-ink">
               Privacy Policy
