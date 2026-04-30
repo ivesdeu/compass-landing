@@ -191,7 +191,7 @@ export default function SiteHeader() {
   );
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 border-b border-black bg-white/95 backdrop-blur-sm">
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 bg-white/95 backdrop-blur-sm">
       <div
         className={`pointer-events-auto relative mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4 sm:px-6 ${mobileMenuOpen ? "z-[110]" : ""}`}
       >

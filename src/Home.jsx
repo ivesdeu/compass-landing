@@ -658,7 +658,7 @@ export default function Home() {
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <TransitionLink
                   to="/contact"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-ink px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-ink/90 sm:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-transparent bg-ink px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-ink/90 sm:w-auto"
                 >
                   Book a demo
                 </TransitionLink>
@@ -1219,7 +1219,7 @@ export default function Home() {
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <TransitionLink
                 to="/contact"
-                className="inline-flex rounded-full bg-ink px-10 py-4 text-sm font-semibold text-white shadow-sm transition hover:bg-ink/90"
+                className="inline-flex rounded-full border border-transparent bg-ink px-10 py-4 text-sm font-semibold text-white shadow-sm transition hover:bg-ink/90"
               >
                 Book a demo
               </TransitionLink>
