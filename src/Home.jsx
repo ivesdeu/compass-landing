@@ -573,7 +573,7 @@ const featureCards = [
   },
   {
     title: "Team Workspaces",
-    body: "Run owner/admin/member roles in a shared workspace so everyone works from the same context.",
+    body: "Run owner/admin/member roles in a shared workspace so everyone works from the same context, with support for custom crm logos so you can upload your own logo for better brand customization.",
     glyph: "timesheet",
     tone: "blue",
   },
@@ -652,8 +652,8 @@ export default function Home() {
                 Run your full client lifecycle in one operating system.
               </h1>
               <p className="mx-auto mt-5 max-w-2xl text-pretty text-lg font-light leading-relaxed text-muted md:text-[18px]">
-                Compass combines CRM, scheduling, invoices, workflow automations, and AI Advisor
-                so service teams close work faster and stay organized.
+                Compass combines an AI native CRM, scheduling, invoices, workflow automations, and
+                AI Advisor so service teams close work faster and stay organized.
               </p>
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <TransitionLink
@@ -735,7 +735,8 @@ export default function Home() {
               </h2>
               <p className="mt-4 text-base font-light leading-relaxed text-muted md:text-lg">
                 Automate follow-up, reminders, and status changes with run tracking and
-                idempotent execution so repeated triggers do not create duplicate actions.
+                idempotent execution so repeated triggers do not create duplicate actions. Build
+                the best sales sequences with reliable outreach sync across your team.
               </p>
             </div>
             <div className="mx-auto mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -946,7 +947,8 @@ export default function Home() {
               </h2>
               <p className="mt-4 text-base font-light text-muted md:text-lg">
                 Built for founders, operators, and client service teams who need one place to run
-                work end to end.
+                work end to end with crm and billing in one system, including every crm digital
+                marketing agency workflow from outreach through invoicing.
               </p>
             </div>
             <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -983,6 +985,7 @@ export default function Home() {
               <p className="mt-5 text-base font-light leading-relaxed text-muted md:text-[17px]">
                 Advisor reads your live workspace context and turns raw activity into concise answers
                 your team can act on immediately, including building targeted lists in seconds.
+                Call intelligence is coming soon.
               </p>
               <ul className="mt-8 space-y-4 text-base font-light leading-relaxed text-ink md:text-[17px]">
                 <li className="flex gap-3">
