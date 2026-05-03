@@ -139,15 +139,60 @@ function MobileDrawerRoute({ to, children, onNavigate }) {
 export default function SiteHeader() {
   const { pathname } = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuClosing, setMobileMenuClosing] = useState(false);
   const [solutionsMenuOpen, setSolutionsMenuOpen] = useState(false);
   const [featuresMenuOpen, setFeaturesMenuOpen] = useState(false);
   const featuresCloseTimerRef = useRef(null);
-  const closeMobileMenu = () => setMobileMenuOpen(false);
+  const solutionsCloseTimerRef = useRef(null);
+  const mobileCloseTimerRef = useRef(null);
+
+  const clearMobileCloseTimer = () => {
+    if (!mobileCloseTimerRef.current) return;
+    window.clearTimeout(mobileCloseTimerRef.current);
+    mobileCloseTimerRef.current = null;
+  };
+
+  const openMobileMenu = () => {
+    clearMobileCloseTimer();
+    setMobileMenuClosing(false);
+    setMobileMenuOpen(true);
+  };
+
+  const closeMobileMenu = () => {
+    if (!mobileMenuOpen || mobileMenuClosing) return;
+    setMobileMenuClosing(true);
+    clearMobileCloseTimer();
+    mobileCloseTimerRef.current = window.setTimeout(() => {
+      setMobileMenuOpen(false);
+      setMobileMenuClosing(false);
+      mobileCloseTimerRef.current = null;
+    }, 220);
+  };
 
   const clearFeaturesCloseTimer = () => {
     if (!featuresCloseTimerRef.current) return;
     window.clearTimeout(featuresCloseTimerRef.current);
     featuresCloseTimerRef.current = null;
+  };
+
+  const clearSolutionsCloseTimer = () => {
+    if (!solutionsCloseTimerRef.current) return;
+    window.clearTimeout(solutionsCloseTimerRef.current);
+    solutionsCloseTimerRef.current = null;
+  };
+
+  const openSolutionsMenu = () => {
+    clearSolutionsCloseTimer();
+    setSolutionsMenuOpen(true);
+    setFeaturesMenuOpen(false);
+  };
+
+  const closeSolutionsMenuSoon = () => {
+    clearSolutionsCloseTimer();
+    solutionsCloseTimerRef.current = window.setTimeout(() => {
+      setSolutionsMenuOpen(false);
+      solutionsCloseTimerRef.current = null;
+    }, 170);
   };
 
   const openFeaturesMenu = () => {
@@ -165,26 +210,31 @@ export default function SiteHeader() {
   };
 
   useEffect(() => {
-    if (!mobileMenuOpen) return;
+    if (!mobileMenuOpen || mobileMenuClosing) return;
     document.body.style.overflow = "hidden";
     const onKey = (e) => {
-      if (e.key === "Escape") setMobileMenuOpen(false);
+      if (e.key === "Escape") closeMobileMenu();
     };
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, mobileMenuClosing]);
 
   useEffect(() => {
+    clearMobileCloseTimer();
+    clearSolutionsCloseTimer();
     setMobileMenuOpen(false);
+    setMobileMenuClosing(false);
     setSolutionsMenuOpen(false);
     setFeaturesMenuOpen(false);
   }, [pathname]);
 
   useEffect(
     () => () => {
+      clearMobileCloseTimer();
+      clearSolutionsCloseTimer();
       clearFeaturesCloseTimer();
     },
     [],
@@ -202,18 +252,19 @@ export default function SiteHeader() {
           <nav className="hidden items-center gap-7 lg:flex">
             <div
               className="relative"
-              onMouseEnter={() => {
-                setSolutionsMenuOpen(true);
-                setFeaturesMenuOpen(false);
-              }}
-              onMouseLeave={() => setSolutionsMenuOpen(false)}
+              onMouseEnter={openSolutionsMenu}
+              onMouseLeave={closeSolutionsMenuSoon}
             >
               <NavItem id="product" hasCaret>
                 Solutions
               </NavItem>
               {solutionsMenuOpen && (
-                <div className="pointer-events-auto absolute left-0 top-full z-[120] pt-4">
-                  <div className="grid w-[980px] grid-cols-[2.05fr_1.1fr_1.1fr] gap-10 rounded-2xl border border-black/[0.08] bg-white p-8 shadow-2xl">
+                <div
+                  className="pointer-events-auto fixed left-1/2 top-14 z-[120] -translate-x-1/2 pt-4"
+                  onMouseEnter={openSolutionsMenu}
+                  onMouseLeave={closeSolutionsMenuSoon}
+                >
+                  <div className="motion-reduce:animate-none animate-mega-enter grid w-[min(980px,calc(100vw-2rem))] grid-cols-[2.05fr_1.1fr_1.1fr] gap-10 rounded-2xl border border-black/[0.08] bg-white p-8 shadow-2xl">
                     <div>
                       <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
                         Solutions
@@ -346,7 +397,13 @@ export default function SiteHeader() {
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav-panel"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMobileMenuOpen((o) => !o)}
+            onClick={() => {
+              if (mobileMenuOpen) {
+                closeMobileMenu();
+                return;
+              }
+              openMobileMenu();
+            }}
             className="ml-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-black/[0.12] bg-white text-ink transition hover:bg-card lg:hidden"
           >
             {mobileMenuOpen ? (
@@ -360,19 +417,23 @@ export default function SiteHeader() {
 
       {mobileMenuOpen && (
         <div
-          className="pointer-events-auto fixed inset-0 z-[100] lg:hidden"
+          className="pointer-events-auto absolute inset-x-0 top-full z-[200] h-[calc(100vh-3.5rem)] lg:hidden"
           role="presentation"
         >
           <button
             type="button"
             aria-label="Close menu"
-            className="absolute inset-0 bg-ink/40 backdrop-blur-[2px]"
+            className={`absolute inset-0 bg-ink/40 backdrop-blur-[2px] motion-reduce:animate-none ${
+              mobileMenuClosing ? "animate-fade-exit" : "animate-fade-enter"
+            }`}
             onClick={closeMobileMenu}
           />
           <nav
             id="mobile-nav-panel"
             aria-labelledby="mobile-nav-trigger"
-            className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col border-l border-black/[0.06] bg-white shadow-2xl"
+            className={`absolute right-0 top-0 ml-auto flex h-full w-full max-w-sm flex-col overflow-y-auto border-l border-black/[0.06] bg-white shadow-2xl motion-reduce:animate-none ${
+              mobileMenuClosing ? "animate-drawer-exit" : "animate-drawer-enter"
+            }`}
           >
             <div className="flex items-center justify-between border-b border-black/[0.06] px-4 py-4">
               <span className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">

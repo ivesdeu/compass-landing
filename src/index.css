@@ -7,11 +7,17 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
     @apply antialiased;
     background-color: #f5f5f5;
     color: #0a0a0a;
+    overflow-x: hidden;
+  }
+
+  #root {
+    overflow-x: hidden;
   }
 }

@@ -26,9 +26,34 @@ module.exports = {
           from: { opacity: "0", transform: "translateY(12px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "drawer-enter": {
+          from: { opacity: "0", transform: "translateX(28px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
+        "drawer-exit": {
+          from: { opacity: "1", transform: "translateX(0)" },
+          to: { opacity: "0", transform: "translateX(28px)" },
+        },
+        "fade-enter": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        "fade-exit": {
+          from: { opacity: "1" },
+          to: { opacity: "0" },
+        },
+        "mega-enter": {
+          from: { opacity: "0", transform: "translateY(10px) scale(0.985)" },
+          to: { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
       },
       animation: {
         "route-enter": "route-enter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "drawer-enter": "drawer-enter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "drawer-exit": "drawer-exit 0.22s ease-in both",
+        "fade-enter": "fade-enter 0.2s ease-out both",
+        "fade-exit": "fade-exit 0.2s ease-in both",
+        "mega-enter": "mega-enter 0.2s cubic-bezier(0.22, 1, 0.36, 1) both",
       },
     },
   },
